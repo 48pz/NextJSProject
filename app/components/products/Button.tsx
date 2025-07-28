@@ -22,8 +22,8 @@ const Button: React.FC<ButtonProps> = ({
     onClick
 }) => {
     return (
-        <button disabled={disabled} className={`disabled: opacity-70
-         disabled: cursor-not-allowed 
+        <button disabled={disabled} onClick={onClick} className={`disabled:opacity-70
+         disabled:cursor-not-allowed 
          rounded-md 
          hover:opacity-80
          transition
