@@ -5,10 +5,11 @@ import { MdArrowBack } from 'react-icons/md';
 import Heading from '../components/Heading';
 import Button from '../components/products/Button';
 import ItemContent from './ItemContent';
+import { formatPrice } from '@/utils/formatPrice';
 
 const CartClient = () => {
 
-    const { cartProducts } = useCart();
+    const { cartProducts, handleclearCart, cartTotalAmount } = useCart();
     if (!cartProducts || cartProducts.length === 0) {
         return (
             <div className='flex flex-col items-center'>
@@ -22,6 +23,8 @@ const CartClient = () => {
             </div>
         );
     }
+
+
     return (
         <div>
             <Heading title="Shopping Cart" center />
@@ -34,17 +37,17 @@ const CartClient = () => {
 
             <div>
                 {cartProducts && cartProducts.map((item) => {
-                    return <ItemContent key={item.id} item={item}/>
+                    return <ItemContent key={item.id} item={item} />
                 })}
             </div>
             <div className='border-t-[1.5px] border-slate-200 py-4 flex justify-between gap-4'>
                 <div className='w-[90px]'>
-                    <Button label='Clear Cart' onClick={() => { }} small outline />
+                    <Button label='Clear Cart' onClick={() => { handleclearCart() }} small outline />
                 </div>
                 <div className='text-sm flex flex-col gap-1 items-start'>
                     <div className='flex justify-between w-full text-base font-semibold'>
                         <span>Subtotal</span>
-                        <span>$,1000</span>
+                        <span>{formatPrice(cartTotalAmount)}</span>
                     </div>
                     <p className='text-slate-500'>Taxes and shipping calculate at check out</p>
                     <Button label='Checkout' onClick={() => { }} />
