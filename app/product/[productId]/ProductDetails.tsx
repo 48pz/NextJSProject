@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "@/app/components/products/Button";
-import ProductImage from "@/app/components/products/ProductImage";
 import SetColor from "@/app/components/products/SetColor";
 import SetQuantity from "@/app/components/products/SetQuantity";
 import { useCart } from "@/hooks/useCart";
@@ -10,6 +9,7 @@ import { useRouter } from "next/navigation";
 
 import { useCallback, useEffect, useState } from "react";
 import { MdCheckCircle } from "react-icons/md";
+import ProductImage from "./ProductImage";
 
 interface ProductDetailsProps {
     product: any
@@ -93,7 +93,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <ProductImage cartProduct={cartProduct} product={product} handleColorSelect={handleColorSelect} />
+            <ProductImage cartProduct={cartProduct} product={product} handleColorSelected={handleColorSelect} />
             <div className="flex flex-col gap-1 text-slate-500 text-sm">
                 <h2 className="text-3xl font-medium text-slate-700">{product.name}</h2>
                 <div className="flex items-center gap-2">

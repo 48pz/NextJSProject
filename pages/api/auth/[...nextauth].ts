@@ -8,10 +8,12 @@ import bcrypt from 'bcrypt';
 const authOptions: AuthOptions = {
     adapter: PrismaAdapter(prisma),
     providers: [
+        //sign in with google
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID as string,
             clientSecret: process.env.GOOGLECLIENT_SECRET as string
         }),
+        //sign in with email and pwd
         CredentialsProvider({
             name: 'credentials',
             credentials: {

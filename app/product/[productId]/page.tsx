@@ -1,17 +1,21 @@
 import { Container } from "@mui/material";
 import ProductDetails from "./ProductDetails";
-//one product for demo
-// import { product } from "@/utils/product";
 import ListRating from "./ListRating";
 import { products } from "@/utils/products";
+import { notFound } from "next/navigation";
 
 interface IParams {
     productId?: string
 }
 
-const Product = ({ params }: { params: IParams }) => {
+const Product = async ({ params }: { params: IParams }) => {
+    const {productId} = await params;
+
     console.log('params', params);
-    const product = products.find((item) => item.id === params.productId);
+    const product = products.find((item) => item.id === productId);
+    if(!product){
+        return notFound();
+    }
 
     return (
         <div className="p-8">
