@@ -3,6 +3,22 @@
 import { Product } from "@prisma/client";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { formatPrice } from "@/utils/formatPrice";
+import Heading from "@/app/components/Heading";
+import Status from "@/app/components/products/Status";
+import {
+  MdCached,
+  MdClose,
+  MdDelete,
+  MdDone,
+  MdRemoveRedEye,
+} from "react-icons/md";
+import ActionBtn from "@/app/components/products/ActionBtn";
+import { useCallback } from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { deleteObject, getStorage, ref } from "firebase/storage";
+import firebaseApp from "@/libs/firebase";
 
 interface ManageProductsClientProps {
   products: Product[];
@@ -11,6 +27,8 @@ interface ManageProductsClientProps {
 const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   products,
 }) => {
+  const router = useRouter();
+  const storage = getStorage(firebaseApp);
   let rows: any = [];
 
   if (products) {
@@ -22,6 +40,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
         category: product.category,
         brand: product.brand,
         inStock: product.inStock,
+        images: product.images,
       };
     });
   }
@@ -48,7 +67,21 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
       renderCell: (params) => {
         return (
           <div>
-            {params.row.inStock === true ? "in stock" : "out of stock"}
+            {params.row.inStock === true ? (
+              <Status
+                text="in stock"
+                icon={MdDone}
+                bg="bg-teal-200"
+                color="text-teal-700"
+              />
+            ) : (
+              <Status
+                text="out of stock"
+                icon={MdClose}
+                bg="bg-rose-200"
+                color="text-rose-700"
+              />
+            )}
           </div>
         );
       },
@@ -58,24 +91,95 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
       headerName: "Actions",
       width: 200,
       renderCell: (params) => {
-        return <div>Action</div>;
+        return (
+          <div className="flex items-center justify-center gap-2 h-full w-full">
+            <ActionBtn
+              icon={MdCached}
+              onClick={() => {
+                handleToggleStock(params.row.id, params.row.inStock);
+              }}
+            />
+            <ActionBtn
+              icon={MdDelete}
+              onClick={() => {
+                handleDelete(params.row.id, params.row.images);
+              }}
+            />
+            <ActionBtn icon={MdRemoveRedEye} onClick={() => {
+              router.push(`product/${params.row.id}`)
+            }} />
+          </div>
+        );
       },
     },
   ];
 
+  //click to toggle stock status
+  const handleToggleStock = useCallback((id: string, inStock: boolean) => {
+    axios
+      .put("/api/product", {
+        id,
+        inStock: !inStock,
+      })
+      .then((res) => {
+        toast.success("Product status changed");
+        router.refresh();
+      })
+      .catch((err) => {
+        toast.error("Opps! Something went wrong");
+        console.log(err);
+      });
+  }, []);
+
+  const handleDelete = useCallback(async (id: string, images: any[]) => {
+    toast("Deleting product, please wait!");
+    const handleDeleteImage = async () => {
+      try {
+        for (const item of images) {
+          if (item.image) {
+            const imageRef = ref(storage, item.image);
+            await deleteObject(imageRef);
+            console.log("image deleted", item.image);
+          }
+        }
+      } catch (error) {
+        return console.log("Deleting images error", error);
+      }
+    };
+
+    await handleDeleteImage();
+
+    axios
+      .delete(`/api/product/${id}`)
+      .then((res) => {
+        toast.success("Product deleted");
+        router.refresh();
+      })
+      .catch((err) => {
+        toast.error("Failed to delete product");
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <div>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
+    <div className="max-w-[1150px] m-auto text-xl">
+      <div className="mb-4">
+        <Heading title="Manage Products" center />
+      </div>
+      <div style={{ height: 500, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 9 },
+            },
+          }}
+          pageSizeOptions={[5, 20]}
+          checkboxSelection
+          disableRowSelectionOnClick
+        />
+      </div>
     </div>
   );
 };
