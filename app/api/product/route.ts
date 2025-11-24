@@ -5,7 +5,11 @@ import { getCurrentUser } from "@/actions/getCurrentUser";
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
-  if (!currentUser || currentUser.role !== "ADMIN") {
+  if (!currentUser) {
+    return NextResponse.error();
+  }
+
+  if (currentUser.role !== "ADMIN") {
     return NextResponse.error();
   }
 
@@ -41,5 +45,3 @@ export async function PUT(request: Request) {
 
   return NextResponse.json(product);
 }
-
-
