@@ -1,34 +1,33 @@
 import { Container } from "@mui/material";
 import ProductDetails from "./ProductDetails";
 import ListRating from "./ListRating";
-import { products } from "@/utils/products";
 import { notFound } from "next/navigation";
+import getProductById from "@/actions/getProductById";
+import NullData from "@/app/components/products/NullData";
 
 interface IParams {
-    productId?: string
+  productId?: string;
 }
 
 const Product = async ({ params }: { params: IParams }) => {
-    const {productId} = await params;
+  const product = await getProductById(params);
 
-    console.log('params', params);
-    const product = products.find((item) => item.id === productId);
-    if(!product){
-        return notFound();
-    }
+  if (!product) {
+    return <NullData title="Oops! Product with he given id does not exist" />;
+  }
 
-    return (
-        <div className="p-8">
-            <Container>
-                <ProductDetails product={product} />
+  return (
+    <div className="p-8">
+      <Container>
+        <ProductDetails product={product} />
 
-                <div className="flex flex-col mt-20 gap-4">
-                    <div>Add Rating</div>
-                    <ListRating product={product} />
-                </div>
-            </Container>
+        <div className="flex flex-col mt-20 gap-4">
+          <div>Add Rating</div>
+          <ListRating product={product} />
         </div>
-    );
-}
+      </Container>
+    </div>
+  );
+};
 
 export default Product;
