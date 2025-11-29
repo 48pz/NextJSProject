@@ -5,7 +5,7 @@ import ManageProductsClient from "./ManageProductsClient";
 import NullData from "@/app/components/products/NullData";
 
 const ManageProducts = async () => {
-  const products = await getProducts({ category: null });
+  const products = await getProducts();
   const currentUser = await getCurrentUser();
 
   if (!currentUser || currentUser.role !== "ADMIN") {

@@ -1,12 +1,8 @@
 import prisma from "@/libs/prismadb";
 
-interface IParams {
-  orderId?: string;
-}
-
-export default async function getOrderById(params: IParams) {
+export default async function getOrderById(orderId?: string) {
   try {
-    const { orderId } = params;
+    if (!orderId) return null;
 
     const order = await prisma.order.findUnique({
       where: {
@@ -16,7 +12,6 @@ export default async function getOrderById(params: IParams) {
 
     if (!order) return null;
     return order;
-    
   } catch (error: any) {
     throw new Error(error);
   }

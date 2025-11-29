@@ -1,15 +1,19 @@
+import getProducts from "@/actions/getProducts";
 import Container from "./components/Container";
 import HomeBanner from "./components/HomeBanner";
 import NullData from "./components/products/NullData";
 import ProductCard from "./components/products/ProductCard";
-import getProducts, { IProductParams } from "@/actions/getProducts";
 
 interface HomeProps {
-  searchParams: IProductParams;
+  searchParams: Promise<{
+    category?: string;
+    searchTerm?: string;
+  }>;
 }
 
 export default async function Home({ searchParams }: HomeProps) {
-  const products = await getProducts(searchParams);
+  const { category, searchTerm } = await searchParams;
+  const products = await getProducts(category, searchTerm);
 
   if (products.length === 0) {
     return (

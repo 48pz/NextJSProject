@@ -163,7 +163,9 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       })
       .then((res) => {
         toast.success("Order Dispatched");
-        router.refresh();
+        setTimeout(() => {
+          router.refresh();
+        }, 100);
       })
       .catch((err) => {
         toast.error("Opps! Something went wrong");
@@ -179,7 +181,9 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       })
       .then((res) => {
         toast.success("Order Delivered");
-        router.refresh();
+        setTimeout(() => {
+          router.refresh();
+        }, 100);
       })
       .catch((err) => {
         toast.error("Opps! Something went wrong");

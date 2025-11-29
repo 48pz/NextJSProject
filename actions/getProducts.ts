@@ -1,13 +1,10 @@
 import prisma from "@/libs/prismadb";
 
-export interface IProductParams {
-  category?: string | null;
-  searchTerm?: string | null;
-}
-
-export default async function getProducts(params: IProductParams) {
+export default async function getProducts(
+  category?: string,
+  searchTerm?: string
+) {
   try {
-    const { category, searchTerm } = params;
     let searchString = searchTerm;
     if (!searchString) {
       searchString = "";
@@ -27,6 +24,8 @@ export default async function getProducts(params: IProductParams) {
               contains: searchString,
               mode: "insensitive",
             },
+          },
+          {
             description: {
               contains: searchString,
               mode: "insensitive",

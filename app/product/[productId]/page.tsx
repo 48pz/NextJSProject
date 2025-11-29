@@ -1,16 +1,23 @@
 import { Container } from "@mui/material";
 import ProductDetails from "./ProductDetails";
 import ListRating from "./ListRating";
-import { notFound } from "next/navigation";
 import getProductById from "@/actions/getProductById";
 import NullData from "@/app/components/products/NullData";
+import AddRating from "./AddRating";
+import { getCurrentUser } from "@/actions/getCurrentUser";
 
 interface IParams {
   productId?: string;
 }
 
-const Product = async ({ params }: { params: IParams }) => {
-  const product = await getProductById(params);
+interface ProductProps {
+  params: Promise<IParams>;
+}
+
+const Product = async ({ params }: ProductProps) => {
+  const { productId } = await params;
+  const product = await getProductById(productId);
+  const user = await getCurrentUser();
 
   if (!product) {
     return <NullData title="Oops! Product with he given id does not exist" />;
@@ -22,7 +29,7 @@ const Product = async ({ params }: { params: IParams }) => {
         <ProductDetails product={product} />
 
         <div className="flex flex-col mt-20 gap-4">
-          <div>Add Rating</div>
+          <AddRating product={product} user={user} />
           <ListRating product={product} />
         </div>
       </Container>
