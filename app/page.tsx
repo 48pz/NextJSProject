@@ -1,3 +1,5 @@
+export const revalidate = 0;
+
 import getProducts from "@/actions/getProducts";
 import Container from "./components/Container";
 import HomeBanner from "./components/HomeBanner";

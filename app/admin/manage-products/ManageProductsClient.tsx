@@ -13,7 +13,7 @@ import {
   MdRemoveRedEye,
 } from "react-icons/md";
 import ActionBtn from "@/app/components/products/ActionBtn";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -27,9 +27,15 @@ interface ManageProductsClientProps {
 const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   products,
 }) => {
+  const [ready, setReady] = useState(false);
+
   const router = useRouter();
   const storage = getStorage(firebaseApp);
   let rows: any = [];
+
+  useEffect(() => {
+    setReady(true);
+  }, []);
 
   if (products) {
     rows = products.map((product) => {
@@ -105,9 +111,12 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
                 handleDelete(params.row.id, params.row.images);
               }}
             />
-            <ActionBtn icon={MdRemoveRedEye} onClick={() => {
-              router.push(`product/${params.row.id}`)
-            }} />
+            <ActionBtn
+              icon={MdRemoveRedEye}
+              onClick={() => {
+                router.push(`product/${params.row.id}`);
+              }}
+            />
           </div>
         );
       },
@@ -167,18 +176,20 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
         <Heading title="Manage Products" center />
       </div>
       <div style={{ height: 500, width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 9 },
-            },
-          }}
-          pageSizeOptions={[5, 20]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
+        {ready && (
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 9 },
+              },
+            }}
+            pageSizeOptions={[5, 20]}
+            checkboxSelection
+            disableRowSelectionOnClick
+          />
+        )}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import {
   MdRemoveRedEye,
 } from "react-icons/md";
 import ActionBtn from "@/app/components/products/ActionBtn";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -28,7 +28,11 @@ type ExtendedOrder = Order & {
 
 const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
   const router = useRouter();
+  const [ready, setReady] = useState(false);
   let rows: any = [];
+  useEffect(() => {
+    setReady(true);
+  }, []);
 
   if (orders) {
     rows = orders.map((order) => {
@@ -163,9 +167,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       })
       .then((res) => {
         toast.success("Order Dispatched");
-        setTimeout(() => {
-          router.refresh();
-        }, 100);
+        router.refresh();
       })
       .catch((err) => {
         toast.error("Opps! Something went wrong");
@@ -181,9 +183,7 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
       })
       .then((res) => {
         toast.success("Order Delivered");
-        setTimeout(() => {
-          router.refresh();
-        }, 100);
+        router.refresh();
       })
       .catch((err) => {
         toast.error("Opps! Something went wrong");
@@ -197,18 +197,20 @@ const ManageOrdersClient: React.FC<ManageOrdersClientProps> = ({ orders }) => {
         <Heading title="Manage Orders" center />
       </div>
       <div style={{ height: 500, width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 9 },
-            },
-          }}
-          pageSizeOptions={[5, 20]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
+        {ready && (
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 9 },
+              },
+            }}
+            pageSizeOptions={[5, 20]}
+            checkboxSelection
+            disableRowSelectionOnClick
+          />
+        )}
       </div>
     </div>
   );
