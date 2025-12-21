@@ -1,8 +1,8 @@
+export const dynamic = "force-dynamic";
 import { Container } from "@mui/material";
 import getOrderById from "@/actions/getOrderById";
 import OrderDetails from "./OrderDetails";
 import NullData from "@/app/components/products/NullData";
-export const dynamic = "force-dynamic";
 interface IParams {
   orderId?: string;
 }

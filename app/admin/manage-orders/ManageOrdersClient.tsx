@@ -17,7 +17,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import moment from "moment";
-export const dynamic = "force-dynamic";
+
 interface ManageOrdersClientProps {
   orders: ExtendedOrder[];
 }

@@ -19,7 +19,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { deleteObject, getStorage, ref } from "firebase/storage";
 import firebaseApp from "@/libs/firebase";
-export const dynamic = "force-dynamic";
+
 interface ManageProductsClientProps {
   products: Product[];
 }

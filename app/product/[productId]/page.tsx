@@ -1,3 +1,4 @@
+export const dynamic = "force-dynamic";
 import { Container } from "@mui/material";
 import ProductDetails from "./ProductDetails";
 import ListRating from "./ListRating";
@@ -5,7 +6,7 @@ import getProductById from "@/actions/getProductById";
 import NullData from "@/app/components/products/NullData";
 import AddRating from "./AddRating";
 import { getCurrentUser } from "@/actions/getCurrentUser";
-export const dynamic = "force-dynamic";
+
 interface IParams {
   productId?: string;
 }

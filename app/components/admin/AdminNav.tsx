@@ -5,7 +5,7 @@ import { MdDashboard, MdDns, MdFormatListBulleted, MdLibraryAdd } from "react-ic
 import AdminNavItem from "./AdminNavItem";
 import { usePathname } from "next/navigation";
 import Container from "../Container";
-export const dynamic = "force-dynamic";
+
 const AdminNav = () => {
     //nextjs hook it returns current url
     const pathname = usePathname()

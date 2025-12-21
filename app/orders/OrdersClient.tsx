@@ -14,7 +14,6 @@ import {
 import ActionBtn from "@/app/components/products/ActionBtn";
 import { useRouter } from "next/navigation";
 import moment from "moment";
-export const dynamic = "force-dynamic";
 interface OrdersClientProps {
   orders: ExtendedOrder[];
 }
