@@ -1,6 +1,19 @@
 import prisma from "@/libs/prismadb";
+import { Prisma } from "@prisma/client";
 
-export default async function getProductById(productId?: string) {
+export type ProductWithReviews = Prisma.ProductGetPayload<{
+  include: {
+    reviews: {
+      include: {
+        user: true;
+      };
+    };
+  };
+}>;
+
+export default async function getProductById(
+  productId?: string
+): Promise<ProductWithReviews | null> {
   try {
     if (!productId) return null;
     const product = await prisma.product.findUnique({
