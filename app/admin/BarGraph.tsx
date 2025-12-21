@@ -7,7 +7,6 @@ import {
   LinearScale,
   Tooltip,
   Legend,
-  scales,
 } from "chart.js";
 
 import { Bar } from "react-chartjs-2";
