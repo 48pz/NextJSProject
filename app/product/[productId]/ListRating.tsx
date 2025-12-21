@@ -2,7 +2,7 @@ import Avatar from "@/app/components/Avatar";
 import Heading from "@/app/components/Heading";
 import { Rating } from "@mui/material";
 import moment from "moment";
-
+export const dynamic = "force-dynamic";
 interface ListRatingProps {
   product: any;
 }

@@ -12,12 +12,9 @@ import {
   MdRemoveRedEye,
 } from "react-icons/md";
 import ActionBtn from "@/app/components/products/ActionBtn";
-import { useCallback } from "react";
-import axios from "axios";
-import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import moment from "moment";
-
+export const dynamic = "force-dynamic";
 interface OrdersClientProps {
   orders: ExtendedOrder[];
 }

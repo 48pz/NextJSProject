@@ -5,7 +5,7 @@ import { truncateText } from "@/utils/truncateText";
 import { Rating } from "@mui/material";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+export const dynamic = "force-dynamic";
 interface ProductCardProps {
   data: any;
 }

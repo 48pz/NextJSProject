@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { MdCheckCircle } from "react-icons/md";
 import ProductImage from "./ProductImage";
-
+export const dynamic = "force-dynamic";
 interface ProductDetailsProps {
   product: any;
 }
