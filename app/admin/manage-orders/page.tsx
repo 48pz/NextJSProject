@@ -3,7 +3,7 @@ import Container from "@/app/components/Container";
 import NullData from "@/app/components/products/NullData";
 import ManageOrdersClient from "./ManageOrdersClient";
 import getOrders from "@/actions/getOrders";
-
+export const dynamic = "force-dynamic";
 const ManageOrders = async () => {
   const orders = await getOrders();
   const currentUser = await getCurrentUser();
