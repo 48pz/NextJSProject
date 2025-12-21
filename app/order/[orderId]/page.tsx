@@ -7,8 +7,10 @@ interface IParams {
   orderId?: string;
 }
 
-const Order = async ({ params }: { params: IParams }) => {
-  const order = await getOrderById(params.orderId);
+const Order = async ({ params }: { params: Promise<IParams> }) => {
+  const { orderId } = await params;
+
+  const order = await getOrderById(orderId);
 
   if (!order) {
     return <NullData title="No order"></NullData>;

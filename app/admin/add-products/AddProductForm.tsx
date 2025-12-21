@@ -202,7 +202,7 @@ const AddProductForm = () => {
 
   return (
     <>
-      <Heading title="Add a Product" center />
+      <Heading title="Add a Product" center className="text-accent" />
       <Input
         id="name"
         label="Name"
@@ -243,7 +243,7 @@ const AddProductForm = () => {
       />
 
       <div className="w-full font-medium">
-        <div className="mb-2 font-semibold">Select a Category</div>
+        <div className="mb-2 font-semibold text-accent">Select a Category</div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-h[50vh] overflow-y-auto">
           {categories.map((item) => {
             if (item.label === "All") {

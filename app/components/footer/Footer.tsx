@@ -6,7 +6,7 @@ import { AiFillTwitterCircle, AiFillInstagram, AiFillYoutube } from "react-icons
 
 const Footer = () => {
     return (
-        <footer className="bg-slate-700 text-slate-200 text-sm mt-16">
+        <footer className="bg-primary text-accent text-sm mt-16">
             <Container>
                 <div className="flex felx-col md:flex-row justify-between pt-16 pb-8">
                     <FooterList>
@@ -30,7 +30,7 @@ const Footer = () => {
                         <p className="mb-2">At our electronics store, we are dedicated to providing the latest and greatest devices and accessorites to our customers.
                             With a wide selection of phones, TVs, laptops, watches, and accessories.
                         </p>
-                        <p>&copy; {new Date().getFullYear()} O-Mart. All rights reserved.</p>
+                        <p>&copy; {new Date().getFullYear()} Circuity電. All rights reserved.</p>
                     </div>
 
                     <FooterList>

@@ -9,7 +9,7 @@ interface CategoryProps {
   selected?: boolean;
 }
 
-const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
+const  Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
   const router = useRouter();
   const params = useSearchParams();
   const handleClick = useCallback(() => {
@@ -45,8 +45,8 @@ const Category: React.FC<CategoryProps> = ({ label, icon: Icon, selected }) => {
       onClick={handleClick}
       className={`flex items-center justify-center text-center gap-1 p-2 border-b-2 hover:text-slate-800 transition cursor-pointer ${
         selected
-          ? "border-b-slate-800 text-slate-800"
-          : "border-transparent text-slate-500"
+          ? "border-accent text-accent font-medium"
+          : "border-transparent text-slate-500 hover:text-primary"
       }`}
     >
       <Icon size={20}></Icon>

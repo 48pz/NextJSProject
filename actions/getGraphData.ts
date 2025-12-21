@@ -42,12 +42,15 @@ export default async function getGraphData() {
       aggregatedData[day].totalAmount += amount;
     });
 
-    const formattedData = Object.values(aggregatedData).sort((a, b) => {
-      moment(a.date).diff(moment(b.date));
-    });
+    const formattedData = Object.values(aggregatedData).sort((a, b) =>
+      moment(a.date).diff(moment(b.date))
+    );
 
     return formattedData;
   } catch (error: any) {
-    throw new Error(error);
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("Unknown error occurred");
   }
 }

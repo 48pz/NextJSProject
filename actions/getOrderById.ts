@@ -13,6 +13,9 @@ export default async function getOrderById(orderId?: string) {
     if (!order) return null;
     return order;
   } catch (error: any) {
-    throw new Error(error);
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("Unknown error occurred");
   }
 }

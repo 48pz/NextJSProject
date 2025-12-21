@@ -2,7 +2,7 @@
 
 import { useCart } from "@/hooks/useCart";
 import { useRouter } from "next/navigation";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { loadStripe, StripeElementsOptions } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js';
@@ -76,7 +76,7 @@ const CheckoutClient = () => {
                     <CheckoutForm clientSecret={clientSecret} handleSetPaymentSuccess={handlePaymentSuccess} />
                 </Elements>
             )}
-            {loading && (<div className="text-center">Loading Checkout</div>)}
+            {loading && (<div className="text-center text-textmain font-bold">Loading Checkout</div>)}
             {error && (<div className="text-center text-rose-500">Something went wrong...</div>)}
             {paymentSuccess && (
                 <div className="flex items-center flex-col gap-4">

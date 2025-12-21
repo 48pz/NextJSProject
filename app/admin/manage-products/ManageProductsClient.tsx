@@ -114,7 +114,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
             <ActionBtn
               icon={MdRemoveRedEye}
               onClick={() => {
-                router.push(`product/${params.row.id}`);
+                router.push(`/product/${params.row.id}`);
               }}
             />
           </div>
@@ -173,7 +173,7 @@ const ManageProductsClient: React.FC<ManageProductsClientProps> = ({
   return (
     <div className="max-w-[1150px] m-auto text-xl">
       <div className="mb-4">
-        <Heading title="Manage Products" center />
+        <Heading title="Manage Products" center className="text-pink"/>
       </div>
       <div style={{ height: 500, width: "100%" }}>
         {ready && (

@@ -15,7 +15,7 @@ const CustomCheckBox: React.FC<CustomCheckBoxProps> = ({
   register,
 }) => {
   return (
-    <div className="w-full flex flex-row gap-2 items-center">
+    <div className="w-full flex flex-row gap-2 items-center text-pink">
       <input
         type="checkbox"
         autoComplete="off"

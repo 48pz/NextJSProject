@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { categories } from "@/utils/Categories";
 import Container from "../Container";
@@ -13,9 +13,9 @@ const Categories = () => {
   const isMainPage = pathname === "/";
   if (!isMainPage) return null;
   return (
-    <div className="bg-white ">
+    <div className="bg-white border-b border-slate-200">
       <Container>
-        <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
+        <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto text-slate-500">
           {categories.map((item) => (
             <Category
               key={item.label}

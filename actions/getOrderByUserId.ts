@@ -16,6 +16,9 @@ export default async function getOrdersByUserId(userId: string) {
 
     return orders;
   } catch (error: any) {
-    throw new Error(error);
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("Unknown error occurred");
   }
 }

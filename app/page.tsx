@@ -2,8 +2,8 @@ export const revalidate = 0;
 
 import getProducts from "@/actions/getProducts";
 import Container from "./components/Container";
-import HomeBanner from "./components/HomeBanner";
 import NullData from "./components/products/NullData";
+import Hero from "./components/Hero";
 import ProductCard from "./components/products/ProductCard";
 
 interface HomeProps {
@@ -38,9 +38,9 @@ export default async function Home({ searchParams }: HomeProps) {
     <div className="p-8">
       <Container>
         <div>
-          <HomeBanner />
+          <Hero/>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+        <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
           {shuffledProducts.map((product: any) => {
             return <ProductCard key={product.id} data={product} />;
           })}

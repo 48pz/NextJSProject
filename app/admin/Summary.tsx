@@ -81,8 +81,8 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
   const summaryKeys = Object.keys(summaryData);
   return (
     <div className="max-w-[1150px] m-auto">
-      <div className="mb-4 mt-8">
-        <Heading title="Stats" center />
+      <div className="mb-4">
+        <Heading title="Stats" center className="text-pink" />
       </div>
       <div className="grid grid-cols-2 gap-3 max-h-50vh overflow-y-auto">
         {summaryKeys &&
@@ -92,14 +92,14 @@ const Summary: React.FC<SummaryProps> = ({ orders, products, users }) => {
                 key={key}
                 className="rounded-xl border-2 p-4 flex flex-col items-center gap-2 transition"
               >
-                <div className="text-xl md:text-4xl font-bold">
+                <div className="text-xl md:text-4xl font-bold text-pink">
                   {summaryData[key].label === "Total Sale" ? (
                     <>{formatPrice(summaryData[key].digit)}</>
                   ) : (
                     <>{formatNumber(summaryData[key].digit)}</>
                   )}
                 </div>
-                <div>{summaryData[key].label}</div>
+                <div className="text-accent">{summaryData[key].label}</div>
               </div>
             );
           })}

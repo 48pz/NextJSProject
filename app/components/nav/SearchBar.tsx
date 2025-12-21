@@ -34,7 +34,7 @@ const SearchBar = () => {
     );
 
     router.push(url);
-    reset()
+    reset();
   };
   return (
     <div className="flex items-center gap-0.5">
@@ -42,11 +42,11 @@ const SearchBar = () => {
         {...register("searchTerm")}
         autoComplete="off"
         type="text"
-        placeholder="Explore O-mart"
-        className="p-2 border border-gray-300 rounded-l-md focus:outline-none focus:bourder-[0.5px] focus:border-slate-500 w-80 bg-white"
+        placeholder="Explore Circuity電"
+        className="h-10 px-4 w-80 border text-textmain border-gray-300 rounded-l-md focus:outline-none focus:bourder-[0.5px] focus:border-slate-500 bg-white"
       />
       <button
-        className="bg-slate-700 hover:opacity-80 text-white p-2 rounded-r-md"
+        className="h-10 px-6 bg-accent text-primary hover:bg-accent/80 transition p-2 rounded-r-md cursor-pointer"
         onClick={handleSubmit(onSubmit)}
       >
         Search

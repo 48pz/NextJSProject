@@ -5,7 +5,7 @@ import getUsers from "@/actions/getUsers";
 import Container from "../components/Container";
 import BarGraph from "./BarGraph";
 import getGraphData from "@/actions/getGraphData";
-
+export const dynamic = "force-dynamic";
 const Admin = async () => {
   const products = await getProducts(undefined);
   const orders = await getOrders();

@@ -12,7 +12,7 @@ const ListRating: React.FC<ListRatingProps> = ({ product }) => {
 
   return (
     <div>
-      <Heading title="Product Review" />
+      <Heading title="Product Review"  className="text-accent"/>
       <div className="text-sm mt-2 ">
         {product.reviews &&
           product.reviews.map((review: any) => {
@@ -20,7 +20,7 @@ const ListRating: React.FC<ListRatingProps> = ({ product }) => {
               <div key={review.id} className="max-w-[300px]">
                 <div className="flex gap-2 items-center">
                   <Avatar src={review.user.image} />
-                  <div className="font-semibold">{review?.user.name}</div>
+                  <div className="font-semibold text-pink">{review?.user.name}</div>
                   <div className="font-light">
                     {moment(review.createdDate).fromNow()}
                   </div>

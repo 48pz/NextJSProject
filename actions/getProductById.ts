@@ -23,6 +23,9 @@ export default async function getProductById(productId?: string) {
     }
     return product;
   } catch (error) {
-    throw new Error(error);
+    if (error instanceof Error) {
+      throw new Error(error.message);
+    }
+    throw new Error("Unknown error occurred");
   }
 }

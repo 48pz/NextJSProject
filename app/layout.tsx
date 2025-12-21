@@ -10,8 +10,8 @@ import { Toaster } from "react-hot-toast";
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
-  title: "O-Mart",
-  description: "Owen's market palce",
+  title: "Circuity電",
+  description: "Tech, Simplified.",
 };
 
 export default async function RootLayout({

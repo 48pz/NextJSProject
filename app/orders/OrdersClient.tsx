@@ -146,7 +146,7 @@ const OrdersClient: React.FC<OrdersClientProps> = ({ orders }) => {
   return (
     <div className="max-w-[1150px] m-auto text-xl">
       <div className="mb-4">
-        <Heading title="Manage Orders" center />
+        <Heading title="Manage Orders" className="text-accent" center />
       </div>
       <div style={{ height: 500, width: "100%" }}>
         <DataGrid
