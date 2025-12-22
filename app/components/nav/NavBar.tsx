@@ -22,7 +22,7 @@ const NavBar = async () => {
               href="/"
               className={`${orbitron.className} font-bold text-2xl text-accent`}
             >
-              Circuity電
+              Circuitry電
             </Link>
             <div className="hidden md:block">
               <SearchBar />

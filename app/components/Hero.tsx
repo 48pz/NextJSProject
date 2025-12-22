@@ -4,6 +4,15 @@ import { motion } from "framer-motion";
 import Button from "./products/Button";
 import Image from "next/image";
 const Hero = () => {
+  const handleExplor = () => {
+    const el = document.getElementById("productsSection");
+    if (el) {
+      el.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
   return (
     <section className="h-[50vh] bg-primary text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto h-full px-6">
@@ -21,7 +30,12 @@ const Hero = () => {
               <p className="my-4 text-lg leading-7  text-accent max-w-xl whitespace-nowrap">
                 Discover phones, laptops, wearables and accessories
               </p>
-              <Button label={"Explore now"} onClick={() => {}} />
+              <Button
+                label={"Explore now"}
+                onClick={() => {
+                  handleExplor();
+                }}
+              />
               <p className="mt-4 text-sm leading-6 text-white/60">
                 Trusted brands · Secure checkout · Fast delivery
               </p>

@@ -1,7 +1,7 @@
 import AdminNav from "../components/admin/AdminNav";
 
 export const metadata = {
-    title: "Circuity電 Dashboard",
+    title: "Circuitry電 Dashboard",
     description: "Admin Dashboard"
 }
 
