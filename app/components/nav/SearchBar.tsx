@@ -42,7 +42,7 @@ const SearchBar = () => {
         {...register("searchTerm")}
         autoComplete="off"
         type="text"
-        placeholder="Explore Circuity電"
+        placeholder="Explore Circuitry電"
         className="h-10 px-4 w-80 border text-textmain border-gray-300 rounded-l-md focus:outline-none focus:bourder-[0.5px] focus:border-slate-500 bg-white"
       />
       <button

@@ -30,7 +30,7 @@ const Footer = () => {
                         <p className="mb-2">At our electronics store, we are dedicated to providing the latest and greatest devices and accessorites to our customers.
                             With a wide selection of phones, TVs, laptops, watches, and accessories.
                         </p>
-                        <p>&copy; {new Date().getFullYear()} Circuity電. All rights reserved.</p>
+                        <p>&copy; {new Date().getFullYear()} Circuitry電. All rights reserved.</p>
                     </div>
 
                     <FooterList>

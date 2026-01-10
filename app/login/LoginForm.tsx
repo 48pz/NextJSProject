@@ -22,8 +22,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ currentUser }) => {
     const [isLoading, setIsLoading] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm<FieldValues>({
         defaultValues: {
-            email: "",
-            password: "",
+            email: "yoyo@gmail.com",
+            password: "123456",
         },
     });
 
